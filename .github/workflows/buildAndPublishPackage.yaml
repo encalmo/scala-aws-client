@@ -46,6 +46,7 @@ jobs:
         with:
           jvm: adoptium:1.21
           apps: scala scala-cli sbtn
+          power: true
       - name: Setup gpg
         id: gpg
         run: |

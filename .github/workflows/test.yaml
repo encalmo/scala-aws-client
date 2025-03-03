@@ -21,6 +21,8 @@ jobs:
       - uses: VirtusLab/scala-cli-setup@main
         with:
           jvm: adoptium:1.21
+          apps: scala scala-cli sbtn
+          power: true
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

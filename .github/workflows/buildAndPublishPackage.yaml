@@ -45,6 +45,7 @@ jobs:
       - uses: VirtusLab/scala-cli-setup@main
         with:
           jvm: adoptium:1.21
+          apps: scala scala-cli sbtn
       - name: Setup gpg
         id: gpg
         run: |

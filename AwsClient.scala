@@ -145,9 +145,18 @@ object AwsClient {
     }
 
   inline def initializeWithProperties(
-      map: Map[String, String]
+      map: Map[String, String],
+      includeEnvironmentVariables: Boolean = true
   ): AwsClient =
-    initializeWithProperties(map.get)
+    initializeWithProperties { key =>
+      map
+        .get(key)
+        .orElse(
+          if (includeEnvironmentVariables)
+          then scala.util.Try(System.getenv(key)).toOption
+          else None
+        )
+    }
 
   /** Creates new instance of the AwsClient for the given region using a function to retrieve system properties
     */
@@ -160,8 +169,8 @@ object AwsClient {
 
       if (isDebugMode)
       then
-        println(
-          s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Starting ...${AnsiColor.RESET}"
+        print(
+          s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Starting"
         )
 
       val httpClientBuilder: UrlConnectionHttpClient.Builder =
@@ -173,11 +182,6 @@ object AwsClient {
           secretAccessKey <- maybeProperty("AWS_SECRET_ACCESS_KEY")
           sessionToken <- maybeProperty("AWS_SESSION_TOKEN")
         } yield {
-          if (isDebugMode)
-          then
-            println(
-              s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Credentials has been initialized${AnsiColor.RESET}"
-            )
           new AwsCredentialsProvider {
             override def resolveCredentials(): AwsCredentials =
               AwsSessionCredentials.create(
@@ -193,9 +197,14 @@ object AwsClient {
 
       if (isDebugMode)
       then
-        println(
-          s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Running in region $currentRegion${AnsiColor.RESET}"
-        )
+        if (maybeCredentialsProvider.isDefined)
+          println(
+            s", ${AnsiColor.CYAN}credentials set up.${AnsiColor.RESET}${AnsiColor.CYAN} Default region $currentRegion.${AnsiColor.RESET}"
+          )
+        else
+          println(
+            s", ${AnsiColor.RED}credentials NOT found!${AnsiColor.RED}${AnsiColor.CYAN} Default region $currentRegion.${AnsiColor.RESET}"
+          )
 
       final lazy val iam: IamClient =
         createIamClient(currentRegion, httpClientBuilder, maybeCredentialsProvider)

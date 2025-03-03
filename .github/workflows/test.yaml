@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  workflow_dispatch:  
+  
+env:
+  AWS_CLIENT_DEBUG_MODE: ON
+
+jobs:
+  buildAndPublishPackage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: coursier/cache-action@v6
+      - uses: VirtusLab/scala-cli-setup@main
+        with:
+          jvm: adoptium:1.21
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::047719648492:role/GithubActionRole
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: eu-central-1
+          unset-current-credentials: true
+      - name: Get caller identity
+        run: aws sts get-caller-identity --output json
+      - name: Run tests
+        run: scala test .
+
+      

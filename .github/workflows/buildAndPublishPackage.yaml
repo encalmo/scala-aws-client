@@ -56,6 +56,8 @@ jobs:
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           aws-region: ${{ inputs.aws-region }}
           unset-current-credentials: true
+      - name: Run the script
+        run: aws sts get-caller-identity --output json
       - id: version
         name: Compute new version   
         run: ./scripts/computeNewVersion.sc --prefix='${{ env.TAG_PREFIX }}' --bump=${{ inputs.version-bump }} >> "$GITHUB_OUTPUT"

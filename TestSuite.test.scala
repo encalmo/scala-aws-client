@@ -13,7 +13,7 @@ class TestSuite extends munit.FunSuite {
   final val debugModeProperties = Map("AWS_CLIENT_DEBUG_MODE" -> "ON")
 
   final lazy val localAwsSecurityCredentials: Map[String, String] =
-    SetupAwsCredentials("encalmo-sandbox")
+    SetupAwsCredentials("encalmo-sandbox", verbose = true)
       .map(_.toEnvironmentVariables)
       .getOrElse(Map.empty)
 

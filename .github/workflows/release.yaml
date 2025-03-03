@@ -1,0 +1,31 @@
+name: Release new package version
+
+on:
+  workflow_dispatch:
+    inputs: 
+      version-bump:
+        type: choice
+        description: 'How to bump a version?'
+        required: true
+        default: 'patch'
+        options:
+          - major
+          - minor
+          - patch
+          - keep
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - '*.scala'        
+
+jobs:
+  ReleasePackage:
+    uses: ./.github/workflows/buildAndPublishPackage.yaml
+    secrets: inherit
+    with:
+      tag-prefix: 'version'
+      version-bump: ${{ inputs.version-bump || 'patch' }}
+      aws-region: 'eu-central-1'
+      role-to-assume: arn:aws:iam::047719648492:role/GithubActionRole
+
+      

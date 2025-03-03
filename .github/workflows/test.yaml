@@ -6,6 +6,10 @@ on:
 env:
   AWS_CLIENT_DEBUG_MODE: ON
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write # This is required for actions/checkout
+
 jobs:
   buildAndPublishPackage:
     runs-on: ubuntu-latest

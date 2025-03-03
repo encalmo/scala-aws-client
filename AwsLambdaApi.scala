@@ -113,6 +113,23 @@ object AwsLambdaApi {
         .toSeq
     }
 
+  /** Add tags to lambda. */
+  inline def tagLambda(
+      lambdaArn: String,
+      tags: Map[String, String]
+  )(using aws: AwsClient): Unit = {
+    AwsClient.invoke(s"tagLambda") {
+      aws.lambda
+        .tagResource(
+          TagResourceRequest
+            .builder()
+            .resource(lambdaArn)
+            .tags(tags.asJava)
+            .build()
+        )
+    }
+  }
+
   /** Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by
     * a trusted publisher.
     */

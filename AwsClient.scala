@@ -144,6 +144,9 @@ object AwsClient {
       final lazy val apigatewayv2: ApiGatewayV2Client = createApiGatewayV2Client(region, httpClientBuilder)
     }
 
+  inline def initialize(): AwsClient =
+    initializeWithProperties(Map.empty, includeEnvironmentVariables = true)
+
   inline def initializeWithProperties(
       map: Map[String, String],
       includeEnvironmentVariables: Boolean = true

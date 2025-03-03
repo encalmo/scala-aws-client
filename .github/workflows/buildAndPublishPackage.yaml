@@ -32,6 +32,7 @@ permissions:
 
 env:
   TAG_PREFIX: '${{ inputs.tag-prefix }}-'  
+  AWS_CLIENT_DEBUG_MODE: ON
 
 jobs:
   buildAndPublishPackage:

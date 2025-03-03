@@ -158,6 +158,12 @@ object AwsClient {
       override def isDebugMode: Boolean =
         maybeProperty("AWS_CLIENT_DEBUG_MODE").contains("ON")
 
+      if (isDebugMode)
+      then
+        println(
+          s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Starting ...${AnsiColor.RESET}"
+        )
+
       val httpClientBuilder: UrlConnectionHttpClient.Builder =
         UrlConnectionHttpClient.builder()
 

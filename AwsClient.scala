@@ -166,17 +166,30 @@ object AwsClient {
           accessKeyId <- maybeProperty("AWS_ACCESS_KEY_ID")
           secretAccessKey <- maybeProperty("AWS_SECRET_ACCESS_KEY")
           sessionToken <- maybeProperty("AWS_SESSION_TOKEN")
-        } yield new AwsCredentialsProvider {
-          override def resolveCredentials(): AwsCredentials =
-            AwsSessionCredentials.create(
-              accessKeyId,
-              secretAccessKey,
-              sessionToken
+        } yield {
+          if (isDebugMode)
+          then
+            println(
+              s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Credentials has been initialized${AnsiColor.RESET}"
             )
+          new AwsCredentialsProvider {
+            override def resolveCredentials(): AwsCredentials =
+              AwsSessionCredentials.create(
+                accessKeyId,
+                secretAccessKey,
+                sessionToken
+              )
+          }
         }
 
       final override val currentRegion: Region =
         maybeProperty("AWS_DEFAULT_REGION").map(Region.of).getOrElse(Region.US_EAST_1)
+
+      if (isDebugMode)
+      then
+        println(
+          s"${AnsiColor.YELLOW}[AwsClient]${AnsiColor.RESET}${AnsiColor.CYAN} Running in region $currentRegion${AnsiColor.RESET}"
+        )
 
       final lazy val iam: IamClient =
         createIamClient(currentRegion, httpClientBuilder, maybeCredentialsProvider)

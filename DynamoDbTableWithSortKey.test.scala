@@ -47,7 +47,6 @@ class DynamoDbTableWithSortKeySpec extends TestSuite {
     OrdersTable.setItem(order)
 
     val order0 = OrdersTable.getItemAsClass[Order](id, createdAt)
-    println(order0)
 
     assert(order0.isDefined)
     assertEquals(order0.get.order_id, id)

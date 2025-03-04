@@ -2,6 +2,7 @@ package org.encalmo.aws
 
 import org.encalmo.aws.AwsLambdaApi.*
 
+import software.amazon.awssdk.core.SdkBytes
 import software.amazon.awssdk.services.lambda.model.InvocationType
 
 class AwsLambdaApiSpec extends TestSuite {

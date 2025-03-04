@@ -7,6 +7,32 @@ import scala.jdk.CollectionConverters.*
 
 object AwsLambdaApi {
 
+  /** Creates a Lambda function */
+  inline def createFunction(
+      name: String,
+      architecture: Architecture,
+      awsRuntime: Runtime,
+      handler: String,
+      role: String,
+      code: FunctionCode
+  )(using
+      aws: AwsClient
+  ): CreateFunctionResponse =
+    AwsClient.invoke(s"createFunction") {
+      aws.lambda
+        .createFunction(
+          CreateFunctionRequest
+            .builder()
+            .functionName(name)
+            .architectures(architecture)
+            .runtime(awsRuntime)
+            .role(role)
+            .code(code)
+            .handler(handler)
+            .build()
+        )
+    }
+
   /** Invokes a Lambda function. You can invoke a function synchronously (and wait for the response), or asynchronously.
     * By default, Lambda invokes your function synchronously (i.e. theInvocationType is RequestResponse). To invoke a
     * function asynchronously, set InvocationType to Event. Lambda passes the ClientContext object to your function for

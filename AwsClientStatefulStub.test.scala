@@ -1414,14 +1414,14 @@ class AwsClientStatefulStubSpec extends TestSuite {
     awsClientStub.dynamoDb.unpickle(pickledTables)
     assert(
       getItemFromTable(
-        "arn:aws:dynamodb:us-east-1:694389950650:table/accounts-alpha",
+        "arn:aws:dynamodb:us-east-1:000000000000:table/foo",
         "accountId" -> "8bc0fb64-e0e7-40E1-998a-eadb561809f2"
       ).isDefined
     )
   }
 
   def pickledTables = """|{
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/accounts-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/foo": {
                           |    "indexes": [
                           |      {
                           |        "indexName": "zeroHashParticipantCode-index",
@@ -1505,7 +1505,7 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "accountId"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/authorizations-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/authorizations": {
                           |    "items": [
                           |      [
                           |        {
@@ -1523,7 +1523,7 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "phoneNumber"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/interbankExchangeRates-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/interbankExchangeRates": {
                           |    "items": [
                           |      [
                           |        {
@@ -1546,13 +1546,13 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "currency"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/messages-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/messages": {
                           |    "items": [],
                           |    "keySchema": [
                           |      "messageId"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/parameters-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/parameters": {
                           |    "items": [
                           |      [
                           |        {
@@ -1607,7 +1607,7 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "parameter"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/payments-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/payments": {
                           |    "indexes": [
                           |      {
                           |        "indexName": "providerTransactionId-index",
@@ -1879,14 +1879,14 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "paymentId"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/receiverBlacklist-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/receiverBlacklist": {
                           |    "items": [],
                           |    "keySchema": [
                           |      "fullName",
                           |      "lastName"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/receivers-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/receivers": {
                           |    "items": [
                           |      [
                           |        {
@@ -1911,7 +1911,7 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "phoneNumber"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/sessions-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/sessions": {
                           |    "items": [
                           |      [
                           |        {
@@ -1943,7 +1943,7 @@ class AwsClientStatefulStubSpec extends TestSuite {
                           |      "tokenHash"
                           |    ]
                           |  },
-                          |  "arn:aws:dynamodb:us-east-1:694389950650:table/verifications-alpha": {
+                          |  "arn:aws:dynamodb:us-east-1:000000000000:table/verifications": {
                           |    "items": [
                           |      [
                           |        {

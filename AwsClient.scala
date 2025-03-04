@@ -152,13 +152,18 @@ object AwsClient {
       includeEnvironmentVariables: Boolean = true
   ): AwsClient =
     initializeWithProperties { key =>
-      map
-        .get(key)
-        .orElse(
-          if (includeEnvironmentVariables)
-          then scala.util.Try(System.getenv(key)).toOption
-          else None
+      scala.util
+        .Try(
+          map
+            .get(key)
+            .orElse(
+              if (includeEnvironmentVariables)
+              then scala.util.Try(Option(System.getenv(key))).toOption.flatten
+              else None
+            )
         )
+        .toOption
+        .flatten
     }
 
   /** Creates new instance of the AwsClient for the given region using a function to retrieve system properties

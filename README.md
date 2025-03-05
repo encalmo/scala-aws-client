@@ -1,3 +1,5 @@
+![Maven Central Version](https://img.shields.io/maven-central/v/org.encalmo/scala-aws-client_3?style=for-the-badge)
+
 # scala-aws-client
 
 This Scala library wraps selected parts of the [AWS SDK for Java 2.x](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html) to offer simpler, scala-idiomatic API.

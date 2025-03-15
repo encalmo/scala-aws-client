@@ -20,12 +20,27 @@ on:
 
 jobs:
   ReleasePackage:
-    uses: ./.github/workflows/buildAndPublishPackage.yaml
-    secrets: inherit
-    with:
-      tag-prefix: 'version'
-      version-bump: ${{ inputs.version-bump || 'patch' }}
-      aws-region: 'eu-central-1'
-      role-to-assume: arn:aws:iam::047719648492:role/GithubActionRole
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: 'arn:aws:iam::047719648492:role/GithubActionRole'
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: 'eu-central-1'
+          unset-current-credentials: true
+      - name: Get AWS caller identity
+        run: aws sts get-caller-identity --output json
+      - id: release
+        name: Create and upload new release bundles
+        uses: encalmo/create-new-release-action@v1.1
+        with:
+          tag-prefix: 'version'
+          version-bump: ${{ inputs.version-bump || 'patch' }}
+          release-flags: ''
+          github-token:  ${{ secrets.GITHUB_TOKEN }}
+          sonatype-token: ${{ secrets.SONATYPE_TOKEN }}
+          gpg-secret-key-base64: ${{ secrets.GPG_SECRET_KEY }}
+          gpg-secret-key-id: ${{ secrets.GPG_SECRET_KEY_ID }}
 
       

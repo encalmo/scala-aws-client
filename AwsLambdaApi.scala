@@ -232,17 +232,18 @@ object AwsLambdaApi {
       lambdaArn: String
   )(using aws: AwsClient): Map[String, String] =
     AwsClient.invoke(s"getFunctionEnvironmentVariables") {
-      aws.lambda
-        .getFunctionConfiguration(
-          GetFunctionConfigurationRequest
-            .builder()
-            .functionName(lambdaArn)
-            .build()
-        )
-        .environment()
-        .variables()
-        .asScala
-        .toMap
+      Option(
+        aws.lambda
+          .getFunctionConfiguration(
+            GetFunctionConfigurationRequest
+              .builder()
+              .functionName(lambdaArn)
+              .build()
+          )
+          .environment()
+      )
+        .map(_.variables().asScala.toMap)
+        .getOrElse(Map.empty)
     }
 
   /** Modify the version-specific environment of a Lambda function.

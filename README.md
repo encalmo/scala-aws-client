@@ -26,6 +26,8 @@ or with SCALA-CLI
 
     //> using dep org.encalmo::scala-aws-client:0.9.3
 
+## Dependencies
+
 ## Working with DynamoDB
 
 ### Using AwsDynamoDbApi

@@ -1,4 +1,4 @@
-![Maven Central Version](https://img.shields.io/maven-central/v/org.encalmo/scala-aws-client_3?style=for-the-badge)
+<a href="https://github.com/encalmo/scala-aws-client">![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)</a> <a href="https://central.sonatype.com/artifact/org.encalmo/scala-aws-client_3" target="_blank">![Maven Central Version](https://img.shields.io/maven-central/v/org.encalmo/scala-aws-client_3?style=for-the-badge)</a> <a href="https://encalmo.github.io/scala-aws-client/scaladoc/org/encalmo/aws.html" target="_blank"><img alt="Scaladoc" src="https://img.shields.io/badge/docs-scaladoc-red?style=for-the-badge"></a>
 
 # scala-aws-client
 
@@ -29,21 +29,8 @@ or with SCALA-CLI
 ## Dependencies
 
    - [Scala](https://www.scala-lang.org/) >= 3.6.3
-   - software.amazon.awssdk [**bom** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/bom)
-   - software.amazon.awssdk [**iam** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/iam)
-   - software.amazon.awssdk [**sts** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sts)
-   - software.amazon.awssdk [**sso** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sso)
-   - software.amazon.awssdk [**ssooidc** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/ssooidc)
-   - software.amazon.awssdk [**dynamodb** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/dynamodb)
-   - software.amazon.awssdk [**sqs** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sqs)
-   - software.amazon.awssdk [**secretsmanager** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/secretsmanager)
-   - software.amazon.awssdk [**kms** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/kms)
-   - software.amazon.awssdk [**s3** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/s3)
-   - software.amazon.awssdk [**lambda** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/lambda)
-   - software.amazon.awssdk [**apigateway** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigateway)
-   - software.amazon.awssdk [**apigatewayv2** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigatewayv2)
-   - software.amazon.awssdk [**url-connection-client** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/url-connection-client)
    - org.slf4j [**slf4j-nop** 2.0.17](https://central.sonatype.com/artifact/org.slf4j/slf4j-nop)
+   - software.amazon.awssdk [**bom** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/bom) | [**iam** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/iam) | [**sts** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sts) | [**sso** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sso) | [**ssooidc** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/ssooidc) | [**dynamodb** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/dynamodb) | [**sqs** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sqs) | [**secretsmanager** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/secretsmanager) | [**kms** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/kms) | [**s3** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/s3) | [**lambda** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/lambda) | [**apigateway** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigateway) | [**apigatewayv2** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigatewayv2) | [**url-connection-client** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/url-connection-client)
 
 ## Working with DynamoDB
 

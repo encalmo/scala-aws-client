@@ -20,13 +20,30 @@ This Scala library wraps selected parts of the [AWS SDK for Java 2.x](https://do
 
 Use with SBT
 
-    libraryDependencies += "org.encalmo" %% "scala-aws-client" % "0.9.3"
+    libraryDependencies += "org.encalmo" %% "scala-aws-client" % "0.9.5"
 
 or with SCALA-CLI
 
-    //> using dep org.encalmo::scala-aws-client:0.9.3
+    //> using dep org.encalmo::scala-aws-client:0.9.5
 
 ## Dependencies
+
+   - [Scala](https://www.scala-lang.org/) >= 3.6.3
+   - software.amazon.awssdk [**bom** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/bom)
+   - software.amazon.awssdk [**iam** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/iam)
+   - software.amazon.awssdk [**sts** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sts)
+   - software.amazon.awssdk [**sso** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sso)
+   - software.amazon.awssdk [**ssooidc** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/ssooidc)
+   - software.amazon.awssdk [**dynamodb** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/dynamodb)
+   - software.amazon.awssdk [**sqs** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/sqs)
+   - software.amazon.awssdk [**secretsmanager** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/secretsmanager)
+   - software.amazon.awssdk [**kms** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/kms)
+   - software.amazon.awssdk [**s3** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/s3)
+   - software.amazon.awssdk [**lambda** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/lambda)
+   - software.amazon.awssdk [**apigateway** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigateway)
+   - software.amazon.awssdk [**apigatewayv2** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/apigatewayv2)
+   - software.amazon.awssdk [**url-connection-client** 2.31.1](https://central.sonatype.com/artifact/software.amazon.awssdk/url-connection-client)
+   - org.slf4j [**slf4j-nop** 2.0.17](https://central.sonatype.com/artifact/org.slf4j/slf4j-nop)
 
 ## Working with DynamoDB
 

@@ -20,11 +20,11 @@ This Scala library wraps selected parts of the [AWS SDK for Java 2.x](https://do
 
 Use with SBT
 
-    libraryDependencies += "org.encalmo" %% "scala-aws-client" % "0.9.6"
+    libraryDependencies += "org.encalmo" %% "scala-aws-client" % "0.9.7"
 
 or with SCALA-CLI
 
-    //> using dep org.encalmo::scala-aws-client:0.9.6
+    //> using dep org.encalmo::scala-aws-client:0.9.7
 
 ## Dependencies
 

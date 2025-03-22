@@ -161,6 +161,20 @@ object AwsLambdaApi {
     * When you update a function, Lambda provisions an instance of the function and its supporting resources. If your
     * function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but
     * you can still invoke it.
+    *
+    * @param runtime
+    *   The identifier of the function's runtime. Runtime is required if the deployment package is a .zip file archive.
+    *   Specifying a runtime results in an error if you're deploying a function using a container image.
+    * @param handler
+    *   The name of the method within your code that Lambda calls to run your function. Handler is required if the
+    *   deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and
+    *   other qualifiers, depending on the runtime
+    * @param timeout
+    *   The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3
+    *   seconds. The maximum allowed value is 900 seconds.
+    * @param memorySize
+    *   The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU
+    *   allocation. The default value is 128 MB. The value can be any multiple of 1 MB.
     */
   inline def updateFunctionConfiguration(
       lambdaArn: String,
@@ -199,6 +213,12 @@ object AwsLambdaApi {
 
   /** Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by
     * a trusted publisher.
+    *
+    * @param architecture
+    *   The instruction set architecture that the function supports, arm64 or x86_64
+    * @param publish
+    *   Set to true to publish a new version of the function after updating the code. This has the same effect as
+    *   calling PublishVersion separately.
     */
   inline def updateFunctionCode(
       lambdaArn: String,

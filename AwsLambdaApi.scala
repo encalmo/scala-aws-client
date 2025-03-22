@@ -176,7 +176,7 @@ object AwsLambdaApi {
     *   The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU
     *   allocation. The default value is 128 MB. The value can be any multiple of 1 MB.
     * @param snapStart
-    *   Enable SnapStart if true
+    *   The function's SnapStart setting.
     */
   inline def updateFunctionConfiguration(
       lambdaArn: String,
@@ -184,7 +184,7 @@ object AwsLambdaApi {
       handler: Option[String] = None,
       memorySize: Option[Int] = None,
       timeout: Option[Int] = None,
-      snapStart: Option[Boolean] = None
+      snapStart: Option[SnapStart] = None
   )(using aws: AwsClient) =
     AwsClient.invoke(s"updateFunctionConfiguration") {
       val (revisionId, codeSha256) = {
@@ -197,13 +197,7 @@ object AwsLambdaApi {
               .optionally(handler, _.handler)
               .optionally(memorySize, b => i => b.memorySize(Integer.valueOf(i)))
               .optionally(timeout, b => i => b.timeout(Integer.valueOf(i)))
-              .optionally(
-                snapStart,
-                b => {
-                  case true  => b.snapStart(SnapStart.builder().applyOn(SnapStartApplyOn.PUBLISHED_VERSIONS).build())
-                  case false => b.snapStart(SnapStart.builder().applyOn(SnapStartApplyOn.NONE).build())
-                }
-              )
+              .optionally(snapStart, b => s => b.snapStart(s))
               .build()
           )
         (response.revisionId(), response.codeSha256())

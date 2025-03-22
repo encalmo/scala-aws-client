@@ -156,6 +156,47 @@ object AwsLambdaApi {
     }
   }
 
+  /** Modify the version-specific settings of a Lambda function.
+    *
+    * When you update a function, Lambda provisions an instance of the function and its supporting resources. If your
+    * function connects to a VPC, this process can take a minute. During this time, you can't modify the function, but
+    * you can still invoke it.
+    */
+  inline def updateFunctionConfiguration(
+      lambdaArn: String,
+      runtime: Option[Runtime] = None,
+      handler: Option[String] = None,
+      memorySize: Option[Int] = None,
+      timeout: Option[Int] = None
+  )(using aws: AwsClient) =
+    AwsClient.invoke(s"updateFunctionConfiguration") {
+      val (revisionId, codeSha256) = {
+        val response = aws.lambda
+          .updateFunctionConfiguration(
+            UpdateFunctionConfigurationRequest
+              .builder()
+              .functionName(lambdaArn)
+              .optionally(runtime, _.runtime)
+              .optionally(handler, _.handler)
+              .optionally(memorySize, b => i => b.memorySize(Integer.valueOf(i)))
+              .optionally(timeout, b => i => b.timeout(Integer.valueOf(i)))
+              .build()
+          )
+        (response.revisionId(), response.codeSha256())
+      }
+      val status = aws.lambda
+        .waiter()
+        .waitUntilFunctionUpdatedV2(
+          GetFunctionRequest.builder().functionName(lambdaArn).build()
+        )
+        .matched()
+      if (status.response().isPresent()) {
+        (revisionId, codeSha256)
+      } else {
+        throw status.exception().get()
+      }
+    }
+
   /** Updates a Lambda function's code. If code signing is enabled for the function, the code package must be signed by
     * a trusted publisher.
     */

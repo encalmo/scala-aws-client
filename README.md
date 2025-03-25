@@ -4,6 +4,16 @@
 
 This Scala library wraps selected parts of the [AWS SDK for Java 2.x](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/home.html) to offer simpler, scala-idiomatic API.
 
+## Table of contents
+
+- [Services](#services)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Working with DynamoDB](#working-with-dynamodb)
+   - [Using AwsDynamoDbApi](#using-awsdynamodbapi)
+   - [Using DynamoDbTable trait](#using-dynamodbtable-trait)
+   - [Using DynamoDbTableWithSortKey trait](#using-dynamodbtablewithsortkey-trait)
+
 ## Services
 
 - IAM
@@ -126,4 +136,53 @@ or with SCALA-CLI
     assert(OrdersTable.getItemOrError(id, createdAt).isRight)
     OrdersTable.removeItem(id, createdAt)
     assert(OrdersTable.getItemOrError(id, createdAt).isLeft)
+```
+
+
+## Project content
+
+```
+├── .github
+│   └── workflows
+│       ├── pages.yaml
+│       ├── release.yaml
+│       └── test.yaml
+│
+├── .gitignore
+├── .scalafix.conf
+├── .scalafmt.conf
+├── AwsApiGatewayApi.scala
+├── AwsApiGatewayV2Api.scala
+├── AwsClient.scala
+├── AwsClient.test.scala
+├── AwsClientStatefulStub.scala
+├── AwsClientStatefulStub.test.scala
+├── AwsClientStatelessStub.scala
+├── AwsClientStatelessStub.test.scala
+├── AwsDynamoDbApi.scala
+├── AwsDynamoDbApi.test.scala
+├── AwsIamApi.scala
+├── AwsKmsApi.scala
+├── AwsKmsApi.test.scala
+├── AwsLambdaApi.scala
+├── AwsLambdaApi.test.scala
+├── AwsS3Api.scala
+├── AwsSecretsManagerApi.scala
+├── AwsSqsApi.scala
+├── AwsStsApi.scala
+├── AwsStsApi.test.scala
+├── DynamoDbEnvironment.scala
+├── DynamoDbTable.scala
+├── DynamoDbTable.test.scala
+├── DynamoDbTableWithSortKey.scala
+├── DynamoDbTableWithSortKey.test.scala
+├── ErrorContext.scala
+├── LICENSE
+├── Macros.scala
+├── Macros.test.scala
+├── project.scala
+├── README.md
+├── test.sh
+├── TestSuite.test.scala
+└── Utils.scala
 ```
